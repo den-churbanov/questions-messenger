@@ -1,0 +1,229 @@
+$aside-lr-padding: 0.7rem;
+
+@mixin circle-button-with-icon {
+    $button-size: 0.9rem;
+    width: $button-size;
+    height: $button-size;
+    position: relative;
+    background: $aside-text;
+    border-radius: 50%;
+    transition: background 300ms ease;
+    
+    &.button_primary{
+        background: transparent;
+        border: 2px solid $aside-text;
+        
+        svg{
+            fill: $aside-text;
+        }
+    
+        @media screen and (min-width: $breakpoint-lg) {
+            &:hover {
+                background: transparent;
+                border: 2px solid $aside-menu-item-active;
+    
+                svg{
+                    fill: $aside-menu-item-active;
+                }
+            }
+        }
+    
+        &:active {
+            background: transparent;
+            border: 2px solid $aside-menu-item-active;
+    
+            svg{
+                fill: $aside-menu-item-active;
+            }
+        }
+    }
+    
+    svg {
+        position: absolute;
+        fill: $aside-primary;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        width: 70%;
+        height: 70%;
+    }
+    
+    @media screen and (min-width: $breakpoint-lg) {
+        &:hover {
+            background: $aside-menu-item-active;
+        }
+    }
+    
+    &:active {
+        background: $aside-menu-item-active;
+    }
+}
+
+button.plus_button {
+    @include circle-button-with-icon;
+}
+button.mark_button {
+    @include circle-button-with-icon;
+}
+
+.aside_menu {
+    flex: 0 1 25%;
+    min-width: 150px;
+    background: $aside-primary;
+    
+    &__header {
+        width: 100%;
+        max-height: 15%;
+        border-bottom: 1px solid $aside-secondary;
+        padding: 0.7rem $aside-lr-padding 0.6rem;
+        
+        .profile_card {
+            @include flex-display(flex-start, flex-start, nowrap, row);
+            
+            &__image {
+                height: 65%;
+                max-height: 55px;
+                max-width: 55px;
+                min-width: 47px;
+                
+                border-radius: 7px;
+                overflow: hidden;
+                
+                img {
+                    width: 100%;
+                }
+            }
+            
+            &__info {
+                color: $aside-header-text;
+                
+                p.name {
+                    line-height: 0.65rem;
+                    font-size: 0.65rem;
+                }
+                
+                p.online {
+                    font-size: 0.55rem;
+                    padding-top: 0.15rem;
+                    color: $aside-text;
+                }
+                
+                &.card_info {
+                    margin-left: 0.3rem;
+                }
+            }
+        }
+    }
+    
+    &__content {
+        flex: 1 1 85%;
+        @include flex-display(flex-start, stretch, nowrap, column);
+    }
+    
+    &__title {
+        padding: 0.3rem $aside-lr-padding 0;
+        @include flex-display(space-between, center, nowrap, row);
+        
+        .title_info {
+            
+            span {
+                font-size: 0.6rem;
+                letter-spacing: 0.02rem;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: $aside-header-text;
+            }
+            
+            a {
+                display: block;
+                color: $aside-text;
+                font-size: 0.5rem;
+                cursor: pointer;
+                transition: color 300ms ease;
+                
+                @media screen and (min-width: $breakpoint-lg) {
+                    &:hover {
+                        color: $aside-menu-item-active;
+                    }
+                }
+                
+                &:active {
+                    color: $aside-menu-item-active;
+                }
+            }
+        }
+    }
+}
+
+.menu_list {
+    padding: 0.7rem 0.5rem 0 0.3rem;
+    @include flex-display(flex-start, stretch, nowrap, column);
+    overflow-y: auto;
+    flex: 1 1 100%;
+    
+    &::-webkit-scrollbar-track-piece {
+        background: $aside-secondary;
+        border-radius: 3px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: $aside-header-text;
+        border-radius: 3px;
+    }
+    
+    &::-webkit-scrollbar {
+        display: block;
+        width: 3px;
+    }
+    
+    &__item {
+        border-radius: 3px;
+        width: 100%;
+        color: $aside-text;
+        margin-bottom: 0.3rem;
+        padding: 0.3rem 0.5rem;
+        cursor: pointer;
+        @include flex-display(flex-start, center, nowrap, row);
+        
+        p {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.02rem;
+            user-select: none;
+        }
+        
+        $svg-size: 0.65rem;
+        
+        svg {
+            width: $svg-size;
+            height: $svg-size;
+            margin-right: 0.3rem;
+            fill: $aside-text;
+            user-select: none;
+        }
+        
+        &_active {
+            background: $aside-menu-item-active;
+            color: $aside-text-active;
+            
+            svg {
+                fill: $aside-text-active;
+            }
+        }
+    }
+    
+    &__input {
+        color: $aside-text;
+        font-size: 0.65rem !important;
+        font-weight: 600;
+        letter-spacing: 0.02rem;
+        min-width: 0;
+        flex: 1 1 70%;
+        width: 100%;
+        background: transparent;
+        border-bottom: 2px solid $aside-secondary;
+        margin-right: 0.3rem;
+    }
+}
+
+

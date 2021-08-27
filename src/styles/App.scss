@@ -1,0 +1,61 @@
+@import "null";
+@import "colors";
+@import "fonts";
+
+$breakpoint-xs: 320px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+@mixin flex-display($justify, $align, $iswrap, $direction) {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: flex;
+    -webkit-justify-content: $justify;
+    justify-content: $justify;
+    -webkit-align-items: $align;
+    align-items: $align;
+    flex-flow: $iswrap $direction;
+}
+
+body {
+    min-width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#app_container {
+    width: 100%;
+    height: 100%;
+    background: $app-container-bg;
+    @include flex-display(center, center, nowrap, row);
+}
+
+main.app_wrapper {
+    flex: 0 1 80vw;
+    min-height: calc(70vh + 0.1 * 100vw);
+    background: $app-wrapper-bg;
+    border-radius: 5px;
+    overflow: hidden;
+    
+    @include flex-display(center, stretch, nowrap, row);
+    
+    @media screen and (max-width: $breakpoint-lg){
+    
+    }
+    
+    @media screen and (max-width: $breakpoint-md){
+    
+    }
+    
+    @media screen and (max-width: $breakpoint-sm){
+    
+    }
+}
+
+@import "UI_Components/Loader";
+@import "UI_Components/AsideMenu";
+@import "UI_Components/Messenger";
+

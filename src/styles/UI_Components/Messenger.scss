@@ -1,0 +1,214 @@
+﻿$messenger-lr-padding: 0.5rem;
+
+button.send_button {
+    @include circle-button-with-icon;
+    width: 1.2rem;
+    height: 1.2rem;
+    svg {
+        width: 80%;
+        height: 80%;
+    }
+}
+
+
+.messenger {
+    flex: 1 1 75%;
+    background: $messenger-container-bg;
+    @include flex-display(stretch, stretch, nowrap, column);
+    
+    &__header {
+        padding: 0.7rem $messenger-lr-padding 0.6rem;
+        flex: 0 1 15%;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+        background: $card-bg;
+        
+        p {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.015rem;
+            color: $container-main-text;
+        }
+    }
+    
+    &__content {
+        max-height: 75vh;
+        flex: 1 1 70%;
+        padding: 0.5rem 0.8rem;
+        overflow-y: scroll;
+        
+        &::-webkit-scrollbar-track-piece {
+            background: $card-question-tip-bg;
+            border-radius: 4px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background-color: $card-secondary-text;
+            border-radius: 4px;
+        }
+        
+        &::-webkit-scrollbar {
+            display: block;
+            width: 5px;
+        }
+    }
+    
+    .message_card {
+        background: $card-bg;
+        color: $card-main-text;
+        @include flex-display(flex-start, stretch, nowrap, row);
+        border-radius: 5px;
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15),
+        -1px -1px 2px rgba(0, 0, 0, 0.15);
+        padding: 0.55rem;
+        margin-bottom: 0.4rem;
+        
+        $svg-icon-size: 0.8rem;
+        
+        &__condition {
+            background: $card-question-tip-bg;
+            position: relative;
+            flex: 1 1 20%;
+            align-self: center;
+            height: 125px;
+            border-radius: 4px;
+            @include flex-display(space-between, stretch, nowrap, column);
+            
+            svg {
+                display: none;
+                opacity: 0;
+                width: $svg-icon-size;
+                height: $svg-icon-size;
+                fill: $card-bg;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transition: opacity 1000ms ease-in;
+                transform: translateX(-50%) translateY(-50%);
+            }
+            
+            &_closed {
+                & > .message_card__question {
+                    background-color: $card-question-tip-success-bg;
+                    max-height: 100%;
+                    flex: 0 0 70%;
+                    
+                    &:after {
+                        background-color: $card-question-tip-success-bg;
+                    }
+                }
+                
+                & > .message_card__status {
+                    background-color: $card-question-tip-success-bg;
+                    
+                    p {
+                        color: $card-bg;
+                    }
+                }
+                
+                svg {
+                    display: block;
+                    opacity: 1;
+                }
+            }
+        }
+        
+        &__question {
+            max-height: 30%;
+            transition: all 800ms ease-in;
+            position: relative;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            background-color: $card-question-tip-expectation-bg;
+            text-align: center;
+            
+            &::after {
+                content: "";
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                transition: background-color 800ms ease-in;
+                background-color: $card-question-tip-expectation-bg;
+                left: 30%;
+                transform: rotate(45deg);
+            }
+            
+            p {
+                font-weight: 600;
+                font-size: 0.7rem;
+                color: $card-bg;
+                letter-spacing: 0.03rem;
+            }
+        }
+        
+        &__status {
+            padding: 0.35rem 0.4rem;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 0.1rem;
+            
+            p {
+                font-weight: 600;
+                font-size: 0.6rem;
+                color: $card-main-text;
+                letter-spacing: 0.03rem;
+            }
+        }
+        
+        &__content {
+            padding: 0.2rem 0.3rem 0.2rem 0.5rem;
+            @include flex-display(flex-start, stretch, nowrap, column);
+            
+            p.message {
+                flex: 1 1 90%;
+                text-align: justify;
+                font-size: 0.6rem;
+                letter-spacing: 0.01rem;
+            }
+        }
+        
+        &__management {
+            flex: 0 0 10%;
+            padding-top: 0.5rem;
+            @include flex-display(space-between, flex-end, nowrap, row);
+            
+            p.time {
+                font-size: 0.5rem;
+                letter-spacing: 0.01rem;
+                color: $card-secondary-text;
+            }
+            
+            button.plus_button_primary {
+            
+            }
+        }
+        
+    }
+    
+    &__form {
+        box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.15);
+        background: $card-bg;
+        padding: 0.2rem;
+        flex: 1 0 15%;
+        @include flex-display(stretch, center, nowrap, row);
+        
+        .textarea_input {
+            resize: none;
+            flex: 0 1 93%;
+            padding: 0.3rem;
+            border: 1px solid $card-secondary-text;
+            margin-right: 0.3rem;
+            overflow: auto;
+            
+            text-align: justify;
+            font-size: 0.6rem;
+            letter-spacing: 0.01rem;
+            border-radius: 5px;
+            
+            color: $card-main-text;
+            
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+}
