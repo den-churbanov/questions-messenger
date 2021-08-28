@@ -186,7 +186,7 @@ button.mark_button {
         @include flex-display(flex-start, center, nowrap, row);
         
         p {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 600;
             letter-spacing: 0.02rem;
             user-select: none;
@@ -214,7 +214,7 @@ button.mark_button {
     
     &__input {
         color: $aside-text;
-        font-size: 0.65rem !important;
+        font-size: 0.6rem !important;
         font-weight: 600;
         letter-spacing: 0.02rem;
         min-width: 0;
@@ -223,6 +223,17 @@ button.mark_button {
         background: transparent;
         border-bottom: 2px solid $aside-secondary;
         margin-right: 0.3rem;
+        &::-webkit-input-placeholder{
+            transition: 300ms opacity ease-in;
+            font-size: 0.5rem;
+            font-weight: normal;
+        }
+        
+        &:focus{
+            &::-webkit-input-placeholder{
+                opacity: 0.6;
+            }
+        }
     }
 }
 

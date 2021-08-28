@@ -18,7 +18,8 @@ button.send_button {
     
     &__header {
         padding: 0.7rem $messenger-lr-padding 0.6rem;
-        flex: 0 1 15%;
+        flex: 0 0 15%;
+        min-height: 15%;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
         background: $card-bg;
         
@@ -31,10 +32,14 @@ button.send_button {
     }
     
     &__content {
-        max-height: 75vh;
+        max-height: 70vh;
         flex: 1 1 70%;
         padding: 0.5rem 0.8rem;
         overflow-y: scroll;
+        
+        p.no_messages{
+            text-align: center;
+        }
         
         &::-webkit-scrollbar-track-piece {
             background: $card-question-tip-bg;
@@ -68,9 +73,12 @@ button.send_button {
             background: $card-question-tip-bg;
             position: relative;
             flex: 1 1 20%;
+            min-width: 80px;
+            max-width: 110px;
             align-self: center;
             height: 125px;
             border-radius: 4px;
+            cursor: pointer;
             @include flex-display(space-between, stretch, nowrap, column);
             
             svg {
@@ -91,6 +99,7 @@ button.send_button {
                     background-color: $card-question-tip-success-bg;
                     max-height: 100%;
                     flex: 0 0 70%;
+                    transition: all 800ms ease-in;
                     
                     &:after {
                         background-color: $card-question-tip-success-bg;
@@ -126,13 +135,15 @@ button.send_button {
                 position: absolute;
                 width: 10px;
                 height: 10px;
-                transition: background-color 800ms ease-in;
+                transition: all 800ms ease-in;
                 background-color: $card-question-tip-expectation-bg;
                 left: 30%;
                 transform: rotate(45deg);
             }
             
             p {
+                white-space: nowrap;
+                overflow: hidden;
                 font-weight: 600;
                 font-size: 0.7rem;
                 color: $card-bg;
@@ -145,6 +156,8 @@ button.send_button {
             border-radius: 4px;
             text-align: center;
             margin-top: 0.1rem;
+            transition: background-color 800ms ease-in;
+            background-color: $card-question-tip-bg;
             
             p {
                 font-weight: 600;
@@ -156,6 +169,7 @@ button.send_button {
         
         &__content {
             padding: 0.2rem 0.3rem 0.2rem 0.5rem;
+            flex: 0 1 100%;
             @include flex-display(flex-start, stretch, nowrap, column);
             
             p.message {
@@ -163,6 +177,7 @@ button.send_button {
                 text-align: justify;
                 font-size: 0.6rem;
                 letter-spacing: 0.01rem;
+                white-space: pre-wrap;
             }
         }
         
@@ -177,9 +192,6 @@ button.send_button {
                 color: $card-secondary-text;
             }
             
-            button.plus_button_primary {
-            
-            }
         }
         
     }
