@@ -29,7 +29,7 @@ export const Messenger: React.FC<IMessengerProps> = ({messages, addMessage, chan
             </div>
             <div className="messenger__content">
                 {
-                    !messages ?
+                    !messages || !messages.length ?
                         <p className="no_messages">No messages yet</p> :
                         messages.map(message => <MessengerItem key={message.id} item={message} changeClosed={changeClosed}/>)
                 }

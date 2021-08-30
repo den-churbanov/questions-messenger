@@ -17,7 +17,7 @@ class AppService {
 
     public getDataFromStorage(): Array<IMessageGroup> {
         const data = localStorage.getItem(AppService.STORAGE_KEY)
-        if(!data) return new Array<IMessageGroup>(1)
+        if(!data) return new Array<IMessageGroup>()
         return JSON.parse(data)
     }
 

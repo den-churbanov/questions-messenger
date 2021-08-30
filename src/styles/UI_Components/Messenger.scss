@@ -4,17 +4,21 @@ button.send_button {
     @include circle-button-with-icon;
     width: 1.2rem;
     height: 1.2rem;
+    
     svg {
         width: 80%;
         height: 80%;
     }
 }
 
-
 .messenger {
     flex: 1 1 75%;
     background: $messenger-container-bg;
     @include flex-display(stretch, stretch, nowrap, column);
+    
+    @media screen and (max-width: $breakpoint-md) {
+        flex: 1 1 65%;
+    }
     
     &__header {
         padding: 0.7rem $messenger-lr-padding 0.6rem;
@@ -22,6 +26,10 @@ button.send_button {
         min-height: 15%;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
         background: $card-bg;
+    
+        @media screen and (max-width: $breakpoint-sm) {
+            padding-left: 2rem;
+        }
         
         p {
             font-size: 0.8rem;
@@ -37,9 +45,12 @@ button.send_button {
         padding: 0.5rem 0.8rem;
         overflow-y: scroll;
         
-        p.no_messages{
+        p.no_messages {
             text-align: center;
         }
+    
+        scrollbar-width: thin;
+        scrollbar-color: $card-question-tip-bg $card-secondary-text;
         
         &::-webkit-scrollbar-track-piece {
             background: $card-question-tip-bg;
@@ -97,9 +108,8 @@ button.send_button {
             &_closed {
                 & > .message_card__question {
                     background-color: $card-question-tip-success-bg;
-                    max-height: 100%;
-                    flex: 0 0 70%;
-                    transition: all 800ms ease-in;
+                    max-height: 70%;
+                    flex: 1 1 70%;
                     
                     &:after {
                         background-color: $card-question-tip-success-bg;
@@ -123,12 +133,15 @@ button.send_button {
         
         &__question {
             max-height: 30%;
-            transition: all 800ms ease-in;
             position: relative;
             padding: 0.2rem 0.4rem;
             border-radius: 4px;
             background-color: $card-question-tip-expectation-bg;
             text-align: center;
+            -webkit-transition: all 800ms ease-in;
+            -moz-transition:  all 800ms ease-in;
+            -o-transition:  all 800ms ease-in;
+            transition: all 800ms ease-in;
             
             &::after {
                 content: "";

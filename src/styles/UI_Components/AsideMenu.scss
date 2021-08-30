@@ -9,30 +9,30 @@ $aside-lr-padding: 0.7rem;
     border-radius: 50%;
     transition: background 300ms ease;
     
-    &.button_primary{
+    &.button_primary {
         background: transparent;
         border: 2px solid $aside-text;
         
-        svg{
+        svg {
             fill: $aside-text;
         }
-    
+        
         @media screen and (min-width: $breakpoint-lg) {
             &:hover {
                 background: transparent;
                 border: 2px solid $aside-menu-item-active;
-    
-                svg{
+                
+                svg {
                     fill: $aside-menu-item-active;
                 }
             }
         }
-    
+        
         &:active {
             background: transparent;
             border: 2px solid $aside-menu-item-active;
-    
-            svg{
+            
+            svg {
                 fill: $aside-menu-item-active;
             }
         }
@@ -62,16 +62,27 @@ $aside-lr-padding: 0.7rem;
 button.plus_button {
     @include circle-button-with-icon;
 }
+
 button.mark_button {
     @include circle-button-with-icon;
 }
 
 .aside_menu {
-    flex: 0 1 25%;
-    min-width: 150px;
+    flex: 1 1 25%;
     background: $aside-primary;
+    -webkit-transition: all 400ms ease-in-out;
+    -moz-transition: all 400ms ease-in-out;
+    -o-transition: all 400ms ease-in-out;
+    transition: all 400ms ease-in-out;
+    z-index: 10;
+    
+    @media screen and (max-width: $breakpoint-md) {
+        flex: 0 1 35%;
+        min-width: 220px;
+    }
     
     &__header {
+        position: relative;
         width: 100%;
         max-height: 15%;
         border-bottom: 1px solid $aside-secondary;
@@ -113,10 +124,89 @@ button.mark_button {
                 }
             }
         }
+        
+        $bar-length: 23px;
+        $bar-thickness: 3px;
+        
+        .bars {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: -35px;
+            width: $bar-length;
+            height: $bar-length;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 20;
+            
+            &.is-active {
+                
+                span {
+                    transform: rotate(-45deg);
+                    
+                    &:before,
+                    &:after {
+                        transform: translateX(0) rotate(-90deg);
+                    }
+                }
+            }
+            
+            & > span {
+                position: absolute;
+                width: $bar-length;
+                height: $bar-thickness;
+                border-radius: 100px;
+                transition: 0.2s ease-in-out;
+                background: $aside-primary;
+                top: 49%;
+                
+                &::before,
+                &::after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    will-change: transform;
+                    width: $bar-length;
+                    height: $bar-thickness;
+                    background: $aside-primary;
+                    border-radius: 100px;
+                    transition: 0.2s ease-in-out;
+                }
+                
+                &:before {
+                    transform: translateY(-7px);
+                }
+                
+                &:after {
+                    transform: translateY(7px);
+                }
+                
+            }
+        }
+    }
+    
+    @media screen and (max-width: $breakpoint-sm) {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 250px;
+        transform: translateX(-250px);
+        
+        &_active {
+            transform: translateX(0);
+        }
+        
+        &__header .bars {
+            display: block;
+        }
     }
     
     &__content {
         flex: 1 1 85%;
+        height: 85%;
         @include flex-display(flex-start, stretch, nowrap, column);
     }
     
@@ -158,8 +248,12 @@ button.mark_button {
 .menu_list {
     padding: 0.7rem 0.5rem 0 0.3rem;
     @include flex-display(flex-start, stretch, nowrap, column);
+    overflow-x: hidden;
     overflow-y: auto;
     flex: 1 1 100%;
+    
+    scrollbar-width: thin;
+    scrollbar-color: $aside-secondary $aside-header-text;
     
     &::-webkit-scrollbar-track-piece {
         background: $aside-secondary;
@@ -190,11 +284,14 @@ button.mark_button {
             font-weight: 600;
             letter-spacing: 0.02rem;
             user-select: none;
+            overflow-x: hidden;
         }
         
         $svg-size: 0.65rem;
         
         svg {
+            min-width: $svg-size;
+            min-height: $svg-size;
             width: $svg-size;
             height: $svg-size;
             margin-right: 0.3rem;
@@ -218,19 +315,19 @@ button.mark_button {
         font-weight: 600;
         letter-spacing: 0.02rem;
         min-width: 0;
-        flex: 1 1 70%;
-        width: 100%;
+        flex: 1 1 60%;
         background: transparent;
         border-bottom: 2px solid $aside-secondary;
         margin-right: 0.3rem;
-        &::-webkit-input-placeholder{
+        
+        &::-webkit-input-placeholder {
             transition: 300ms opacity ease-in;
             font-size: 0.5rem;
             font-weight: normal;
         }
         
-        &:focus{
-            &::-webkit-input-placeholder{
+        &:focus {
+            &::-webkit-input-placeholder {
                 opacity: 0.6;
             }
         }

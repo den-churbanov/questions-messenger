@@ -13,7 +13,8 @@ export const App: React.FC = () => {
     useEffect(() => {
         const data = API.getDataFromStorage()
         setGroups(data)
-        if (data.length) setSelected(data[0].id)
+        if (data.length)
+            setSelected(data[0].id)
         return () => {
             API.setDataToStorage(groups)
         }
@@ -50,7 +51,9 @@ export const App: React.FC = () => {
     }
 
     const messages = useMemo(() => {
-        return groups.filter(group => group.id === selected)[0]?.messages
+        const group = groups.filter(group => group.id === selected)[0]
+        if (group) return group.messages
+        return []
     }, [selected, groups])
 
     const changeClosed = (idx: string) => {
@@ -74,6 +77,7 @@ export const App: React.FC = () => {
             return group
         }))
     }
+
     const addMessage = (message: string) => {
         setGroups(prevState => prevState.map(group => {
             if (group.id === selected) {
@@ -96,9 +100,14 @@ export const App: React.FC = () => {
 
     return (
         <main className="app_wrapper">
-            <AsideMenu items={groups} addItem={addGroup} selected={selected} setItemName={setGroupName}
+            <AsideMenu items={groups}
+                       addItem={addGroup}
+                       setItemName={setGroupName}
+                       selected={selected}
                        changeSelected={changeSelected}/>
-            <Messenger messages={messages} addMessage={addMessage} changeClosed={changeClosed}/>
+            <Messenger messages={messages}
+                       addMessage={addMessage}
+                       changeClosed={changeClosed}/>
         </main>
     )
 }

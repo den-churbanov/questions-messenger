@@ -34,24 +34,24 @@ body {
 }
 
 main.app_wrapper {
-    flex: 0 1 80vw;
-    min-height: calc(70vh + 0.1 * 100vw);
+    flex: 0 1 70vw;
+    height: 100%;
+    max-height: 95vh;
     background: $app-wrapper-bg;
     border-radius: 5px;
     overflow: hidden;
     
     @include flex-display(center, stretch, nowrap, row);
     
-    @media screen and (max-width: $breakpoint-lg){
-    
+    @media screen and (max-width: $breakpoint-lg) {
+        flex: 0 1 90vw;
     }
     
-    @media screen and (max-width: $breakpoint-md){
-    
-    }
-    
-    @media screen and (max-width: $breakpoint-sm){
-    
+    @media screen and (max-width: $breakpoint-md) {
+        flex: 0 1 100vw;
+        max-height: 100vh;
+        height: 100vh;
+        border-radius: 0;
     }
 }
 

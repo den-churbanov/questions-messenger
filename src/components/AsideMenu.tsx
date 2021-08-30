@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import avatar from './images/avatar.jpg'
 import {Icon} from './svg-icons/Icon'
 import SVGfile from './svg-icons/icons-sprite.svg'
@@ -14,9 +14,15 @@ interface IAsideMenuProps {
 }
 
 export const AsideMenu: React.FC<IAsideMenuProps> = ({items, addItem, selected, setItemName, changeSelected}) => {
+    const [isActive, toggleActive] = useState(false)
+
+    const toggleMenuHandler = (e: React.MouseEvent) => {
+        e.stopPropagation()
+        toggleActive(prevState => !prevState)
+    }
 
     return (
-        <aside className="aside_menu">
+        <aside className={`aside_menu${isActive ? ' aside_menu_active': ''} `}>
             <div className="aside_menu__header">
                 <div className="profile_card">
                     <div className="profile_card__image">
@@ -26,6 +32,9 @@ export const AsideMenu: React.FC<IAsideMenuProps> = ({items, addItem, selected, 
                         <p className="name">Denis Churbanov</p>
                         <p className="online">online</p>
                     </div>
+                </div>
+                <div className={`bars${isActive ? ' is-active' : ''}`} onClick={toggleMenuHandler}>
+                    <span/>
                 </div>
             </div>
             <div className="aside_menu__content">
@@ -39,10 +48,10 @@ export const AsideMenu: React.FC<IAsideMenuProps> = ({items, addItem, selected, 
                     </button>
                 </div>
                 <ul className="menu_list">
-                    {items.map(item => <MenuItem key = {item.id+item.name}
+                    {items.map(item => <MenuItem key={item.id + item.name}
                                                  item={item}
                                                  selected={selected === item.id}
-                                                 setItemName = {setItemName}
+                                                 setItemName={setItemName}
                                                  changeSelected={changeSelected}/>)}
                 </ul>
             </div>
